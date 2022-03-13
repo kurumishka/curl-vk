@@ -74,6 +74,8 @@ pair_ptr mpair(const char* key, const char* value)
     pair_ptr _pair = (pair_ptr)malloc(sizeof(pair));
     _pair->key = byte_key;
     _pair->value = byte_val;
+    
+    return _pair;
 }
 
 byte_str_ptr form_query(pair_ptr p_arr, size_t size)
