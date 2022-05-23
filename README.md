@@ -6,18 +6,19 @@
 #include "vk_api.h"
 ```
 
-Создать массив параметров:
+### Создать массив параметров:
 ```c
-// pair -- простая пара byte_str* key и value.
+// pair -- пара byte_str* key и value.
 pair params[3] = {
     *(mpair("access_token", "token")),
     *(mpair("group_id", "123")),
-    *(mapir("v", API_VER))
+    *(mpair("v", API_VER))
 };
 ```
 
-Вызвать метод:
+### Вызвать метод.
+Последний параметр call_method -- кол-во пар:
 ```c
-// 3 -- кол-во элементов (пар) массива параметров.
 byte_str_ptr response = call_method("messages.send", params, 3);
-printf("%s\n", response->data); // byte_str_ptr - указатель на byte_str.
+printf("%s\n", response->data);
+```
