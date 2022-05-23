@@ -1,24 +1,13 @@
 /*
-    Simple libcurl based library to interract with vk api methods.
-        @ default api version = 5.130.
-
-    Main interaface function -- call_method(const char*, pair*, size_t);
-        @ where first argument = method name,
-        @       second argument = array of params: (key, value) pairs.
-        @       third argument = length of array (unline size in bytes, it's length).
-
+    VK api calls realisation through libcurl.
     
-    Simple usage example can be found in usage_example.c;
-    To use this library you should get the libcurl lib first.
-        @ compile with -lcurl flag.
+    byte_str -- strings realisation with length field.
+    pair -- key-value pair with key and value type char*
 */
 
-#ifndef VK_API_H
 #include "vk_api.h"
-#endif
 
-
-// --------- base string reslisation;
+// --------- byte_string reslisation;
 
 // -* constructor;
 
@@ -30,7 +19,7 @@ byte_str_ptr init_empty_byte_str()
     return base;
 }
 
-// ---------- base string interface;
+// ---------- byte_string interface;
 
 void byte_str_destructor(byte_str_ptr target)
 {
@@ -139,7 +128,7 @@ byte_str_ptr call_method(const char* method, pair_ptr params, size_t size)
     byte_str_ptr api_request = init_empty_byte_str();
 
     byte_str_append(api_request, base_api); // api.vk.com/method/
-    byte_str_append(api_request, method); // api.vk.com/method/{method_name}
+    byte_str_append(api_request, method);   // api.vk.com/method/{method_name}
     byte_str_merge(api_request, q_params);
 
     byte_str_ptr response = send_request(api_request->data);

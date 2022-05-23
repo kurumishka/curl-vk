@@ -1,13 +1,11 @@
 
+#ifndef VK_API
+#define VK_API
 #include <curl/curl.h>
 #include <stdlib.h>
 #include <string.h>
 
-#define VK_API_H
-
-#ifndef API_VER
 #define API_VER "5.130"
-#endif
 
 #define base_api "https://api.vk.com/method/"
 
@@ -53,4 +51,5 @@ byte_str_ptr form_query(pair_ptr p_arr, size_t size); // vk-api query;
 // *------ main lib interaface:
 
 byte_str_ptr call_method(const char* method, pair_ptr params, size_t size);
+#endif
 
